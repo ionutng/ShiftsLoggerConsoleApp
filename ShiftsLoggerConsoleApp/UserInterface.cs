@@ -36,7 +36,7 @@ internal static class UserInterface
                     ShiftsService.UpdateShift();
                     break;
                 case MenuOptions.DeleteShift:
-                    //DeleteShift();
+                    ShiftsService.DeleteShift();
                     break;
                 case MenuOptions.Quit:
                     Environment.Exit(0);

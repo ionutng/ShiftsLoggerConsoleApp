@@ -60,4 +60,14 @@ internal static class ShiftsService
 
         var response2 = client.ExecutePut(request);
     }
+
+    internal static void DeleteShift()
+    {
+        string shiftId = ShiftsHelper.GetShiftId();
+
+        var client = new RestClient("https://localhost:7290/");
+        var request = new RestRequest($"api/Shifts/{HttpUtility.UrlEncode(shiftId)}");
+
+        var response = client.Delete(request);
+    }
 }
