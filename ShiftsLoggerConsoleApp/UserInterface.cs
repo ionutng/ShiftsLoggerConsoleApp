@@ -52,13 +52,15 @@ internal static class UserInterface
         table.AddColumn("Name");
         table.AddColumn("Date");
         table.AddColumn("Time");
+        table.AddColumn("Duration");
 
         foreach (var shift in shifts)
             table.AddRow(
                 shift.ShiftId.ToString(),
                 shift.FirstName + " " + shift.LastName,
                 shift.StartDate + " - " + shift.EndDate,
-                shift.StartTime + " - " + shift.EndTime);
+                shift.StartTime + " - " + shift.EndTime,
+                shift.Duration.ToString());
 
         AnsiConsole.Write(table);
 
@@ -73,7 +75,8 @@ internal static class UserInterface
             $"Id: {shift.ShiftId}" +
             $"\nName: {shift.FirstName + " " + shift.LastName}" +
             $"\nDate: {shift.StartDate + " - " + shift.EndDate}" +
-            $"\nTime: {shift.StartTime + " - " + shift.EndTime}")
+            $"\nTime: {shift.StartTime + " - " + shift.EndTime}" +
+            $"\nDuration: {shift.Duration}")
         {
             Header = new PanelHeader("Shift Info"),
             Padding = new Padding(2, 2, 2, 2)

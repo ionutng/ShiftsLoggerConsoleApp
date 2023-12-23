@@ -20,6 +20,9 @@ internal class ShiftsHelper
         DateOnly endDate = AnsiConsole.Ask<DateOnly>("End Date (Format: yyyy-MM-dd):");
         TimeOnly startTime = AnsiConsole.Ask<TimeOnly>("Start Time (Format: HH:mm):");
         TimeOnly endTime = AnsiConsole.Ask<TimeOnly>("End Time (Format: HH:mm):");
+        DateTime startShift = new(startDate, startTime);
+        DateTime endShift = new(endDate, endTime);
+        var duration = endShift - startShift;
 
         var shift = new Shift
         {
@@ -28,7 +31,8 @@ internal class ShiftsHelper
             StartDate = startDate,
             EndDate = endDate,
             StartTime = startTime,
-            EndTime = endTime
+            EndTime = endTime,
+            Duration = duration
         };
 
         return shift;
