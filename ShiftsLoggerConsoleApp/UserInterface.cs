@@ -27,12 +27,10 @@ internal static class UserInterface
                     ShiftsService.GetShifts();
                     break;
                 case MenuOptions.ViewShift:
-                    ShiftsService.GetShifts();
-                    string shiftId = AnsiConsole.Ask<string>("Shift's id:");
-                    ShiftsService.GetShift(shiftId);
+                    ShiftsService.GetShift();
                     break;
                 case MenuOptions.AddShift:
-                    //AddShift();
+                    ShiftsService.AddShift();
                     break;
                 case MenuOptions.UpdateShift:
                     //UpdateShift();

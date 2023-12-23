@@ -19,8 +19,10 @@ internal static class ShiftsService
         return shifts;
     }
 
-    internal static void GetShift(string shiftId)
+    internal static void GetShift()
     {
+        string shiftId = ShiftsHelper.GetShiftId();
+
         var client = new RestClient("https://localhost:7290/");
         var request = new RestRequest($"api/Shifts/{HttpUtility.UrlEncode(shiftId)}");
         var response = client.Get(request);
@@ -28,5 +30,17 @@ internal static class ShiftsService
         Shift shift = JsonConvert.DeserializeObject<Shift>(response.Content);
 
         UserInterface.ShowShift(shift);
+    }
+
+    internal static void AddShift()
+    {
+        var shift = ShiftsHelper.GetShiftInput();
+
+        var client = new RestClient("https://localhost:7290/");
+        var request = new RestRequest("api/Shifts");
+
+        request.AddJsonBody(shift);
+
+        var response = client.Post(request);
     }
 }
