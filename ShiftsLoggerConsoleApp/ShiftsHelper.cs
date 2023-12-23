@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShiftsLoggerConsoleApp;
 
@@ -34,6 +35,33 @@ internal class ShiftsHelper
             EndTime = endTime,
             Duration = duration
         };
+
+        return shift;
+    }
+
+    internal static Shift UpdateShift(Shift shift)
+    {
+        shift.FirstName = AnsiConsole.Confirm("Update first name?")
+            ? AnsiConsole.Ask<string>("First Name:")
+            : shift.FirstName;
+
+        shift.LastName = AnsiConsole.Confirm("Update last name?")
+            ? AnsiConsole.Ask<string>("Last Name:")
+            : shift.LastName;
+        
+        if (AnsiConsole.Confirm("Update start date?"))
+            shift.StartDate = AnsiConsole.Ask<DateOnly>("Start Date (Format: yyyy-MM-dd):");
+
+        if (AnsiConsole.Confirm("Update end date?"))
+            shift.EndDate = AnsiConsole.Ask<DateOnly>("End Date (Format: yyyy-MM-dd):");
+
+        if (AnsiConsole.Confirm("Update start time?"))
+            shift.StartTime = AnsiConsole.Ask<TimeOnly>("Start Time (Format: HH:mm):");
+
+        if (AnsiConsole.Confirm("Update end time?"))
+            shift.EndTime = AnsiConsole.Ask<TimeOnly>("End Time (Format: HH:mm):");
+
+        shift.Duration = shift.EndTime - shift.StartTime;
 
         return shift;
     }

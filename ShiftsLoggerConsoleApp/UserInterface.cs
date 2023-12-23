@@ -33,7 +33,7 @@ internal static class UserInterface
                     ShiftsService.AddShift();
                     break;
                 case MenuOptions.UpdateShift:
-                    //UpdateShift();
+                    ShiftsService.UpdateShift();
                     break;
                 case MenuOptions.DeleteShift:
                     //DeleteShift();

@@ -43,4 +43,21 @@ internal static class ShiftsService
 
         var response = client.Post(request);
     }
+
+    internal static void UpdateShift()
+    {
+        string shiftId = ShiftsHelper.GetShiftId();
+
+        var client = new RestClient("https://localhost:7290/");
+        var request = new RestRequest($"api/Shifts/{HttpUtility.UrlEncode(shiftId)}");
+        var response = client.Get(request);
+
+        Shift shift = JsonConvert.DeserializeObject<Shift>(response.Content);
+
+        shift = ShiftsHelper.UpdateShift(shift);
+
+        request.AddJsonBody(shift);
+
+        var response2 = client.ExecutePut(request);
+    }
 }
