@@ -9,7 +9,6 @@ internal static class UserInterface
     {
         while (true)
         {
-            Console.Clear();
             var option = AnsiConsole.Prompt(
                 new SelectionPrompt<MenuOptions>()
                 .Title("What would you like to do?")
@@ -47,6 +46,8 @@ internal static class UserInterface
 
     internal static void ShowShifts(List<Shift> shifts)
     {
+        Console.Clear();
+
         var table = new Table();
         table.AddColumn("Id");
         table.AddColumn("Name");
